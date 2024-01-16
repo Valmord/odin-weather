@@ -13,13 +13,16 @@
     <div class="btm-container">
       <div class="history"></div>
       <div class="search-container">
-        <input
-          type="text"
-          name="search"
-          id="search"
-          placeholder="Type location"
-        />
-        <button>Search</button>
+        <label for="search" class="search-bar">
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="Type location"
+          />
+          <img src="./images/magnify.svg" alt="search" class="search-button" />
+        </label>
+
         <label for="temp" class="temp-toggle">
           <span class="celsius">Celsius</span>
           <input type="checkbox" name="temp" id="temp" />

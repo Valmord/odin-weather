@@ -3,26 +3,34 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 :root {
   font-size: 62.5%;
   font-family: Merriweather, "Times New Roman", Times, serif;
+  --background-color: rgba(51, 90, 138, 0.2);
+  --celsius-color: orangered;
+  --fahrenheit-color: lightgreen;
+  --unengaged-color: gray;
 }
 
 body {
+  background-color: black;
   height: 100vh;
+  /* background-repeat: round; */
+  background-size: cover;
 }
 
 .top-container {
-  background-color: blue;
+  background-color: var(--background-color);
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 30%;
+  height: 40vh;
   font-weight: bold;
-  border-bottom: 3px darkgray solid;
+  /* border-bottom: 3px darkgray solid; */
 }
 
 .weather {
@@ -46,9 +54,9 @@ body {
 }
 
 .btm-container {
-  background-color: black;
+  background-color: var(--background-color);
   color: white;
-  height: 70%;
+  height: 60vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
@@ -60,18 +68,40 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  position: relative;
 
-  & input {
+  & .search-bar {
+    position: relative;
+    width: 100%;
+  }
+
+  & .search-bar > input {
     appearance: none;
     outline: none;
     border: none;
-    width: 100%;
-    padding: 3px 5px;
+    width: 95%;
+    padding: 3px 30px 3px 5px;
+    background-color: #0a121caa;
+    color: white;
 
     border-radius: 8px;
-    border: 2px solid darkgrey;
-    background-color: lightgray;
+    border: 2px solid lightblue;
   }
+
+  .search-button {
+    position: absolute;
+    right: 25px;
+    top: 3px;
+    height: 20px;
+    width: auto;
+    filter: invert(71%) sepia(2%) saturate(0%) hue-rotate(65deg) brightness(96%)
+      contrast(87%);
+    cursor: pointer;
+  }
+
+  /* & input::placeholder {
+    color: ;
+  } */
 
   & button {
     padding: 3px 10px;
@@ -86,6 +116,10 @@ body {
   gap: 10px;
   font-size: 1.6rem;
   font-weight: bold;
+  color: var(--unengaged-color);
+  background-color: #0a121caa;
+  padding: 15px;
+  border-radius: 20px;
 
   & input {
     width: 0;
@@ -97,7 +131,7 @@ body {
     height: 1lh;
     width: 80px;
     border-radius: 10px;
-    background-color: lightblue;
+    background-color: var(--celsius-color);
     cursor: pointer;
     position: relative;
   }
@@ -114,18 +148,18 @@ body {
   }
 
   & input:checked + .slider {
-    background-color: lightgreen;
+    background-color: var(--fahrenheit-color);
   }
 
   & span:has(+ input:not(:checked)) {
-    color: lightblue;
+    color: var(--celsius-color);
   }
 
   & input:checked + .slider + span {
-    color: lightgreen;
+    color: var(--fahrenheit-color);
   }
 
   & input:checked + .slider::before {
-    transform: translateX(56px);
+    transform: translateX(51px);
   }
 }

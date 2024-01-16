@@ -3,21 +3,27 @@ import { weatherData } from "./page-control";
 const apiKey = "1c7a72e69ff54592af805808241401";
 
 export const requestFromWeatherAPI = async (location) => {
-  const response = await fetch(
-    `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}`
-  );
-
-  if (response.status === 200) {
+  try {
+    const response = await fetch(
+      `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}`
+    );
     const apiData = await response.json();
     weatherData.current = apiData.current;
     weatherData.location = apiData.location;
     return apiData;
-  } else {
+  } catch {
     console.error("An Error Occurred", response);
-    weatherData = {};
-    throw new Error("Error occurred");
+    weatherData.deleteData();
   }
 };
+
+// export const updateWeatherData = async (searchValue) => {
+//   try {
+//     await requestFromWeatherAPI(searchValue);
+//   } catch {
+//     //nothing happened
+//   }
+// };
 
 // export const getCityData = async (location) => {
 //   try {
