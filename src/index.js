@@ -1,1 +1,4 @@
-import './styles/style.css';
+import { setListeners } from "./page-control";
+import "./styles/style.css";
+
+setListeners();

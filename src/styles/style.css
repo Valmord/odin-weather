@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  font-size: 62.5%;
+  font-family: Merriweather, "Times New Roman", Times, serif;
+}
+
+body {
+  height: 100vh;
+}
+
+.top-container {
+  background-color: blue;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 30%;
+  font-weight: bold;
+  border-bottom: 3px darkgray solid;
+}
+
+.weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & h4 {
+    margin-top: 10px;
+    font-size: 2rem;
+  }
+
+  & span {
+    margin-top: -5px;
+    font-size: 1.4rem;
+  }
+}
+
+.country-city {
+  margin-top: 20px;
+  font-size: 3rem;
+}
+
+.btm-container {
+  background-color: black;
+  color: white;
+  height: 70%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 30px;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  & input {
+    appearance: none;
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: 3px 5px;
+
+    border-radius: 8px;
+    border: 2px solid darkgrey;
+    background-color: lightgray;
+  }
+
+  & button {
+    padding: 3px 10px;
+    font-weight: bold;
+  }
+}
+
+.temp-toggle {
+  display: flex;
+  justify-content: space-between;
+  width: 280px;
+  gap: 10px;
+  font-size: 1.6rem;
+  font-weight: bold;
+
+  & input {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  & .slider {
+    height: 1lh;
+    width: 80px;
+    border-radius: 10px;
+    background-color: lightblue;
+    cursor: pointer;
+    position: relative;
+  }
+
+  & .slider::before {
+    background-color: black;
+    content: "";
+    position: absolute;
+    height: 0.8lh;
+    width: 0.8lh;
+    left: 4px;
+    top: 0.1lh;
+    border-radius: 50%;
+  }
+
+  & input:checked + .slider {
+    background-color: lightgreen;
+  }
+
+  & span:has(+ input:not(:checked)) {
+    color: lightblue;
+  }
+
+  & input:checked + .slider + span {
+    color: lightgreen;
+  }
+
+  & input:checked + .slider::before {
+    transform: translateX(56px);
+  }
+}

@@ -1,11 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-</head>
-<body>
-    Hello!
-</body>
+  </head>
+  <body>
+    <div class="top-container">
+      <div class="country-city">Weather App</div>
+      <div class="weather"></div>
+    </div>
+    <div class="btm-container">
+      <div class="history"></div>
+      <div class="search-container">
+        <input
+          type="text"
+          name="search"
+          id="search"
+          placeholder="Type location"
+        />
+        <button>Search</button>
+        <label for="temp" class="temp-toggle">
+          <span class="celsius">Celsius</span>
+          <input type="checkbox" name="temp" id="temp" />
+          <span class="slider"></span>
+          <span class="fahrenheit">Fahrenheit</span>
+        </label>
+      </div>
+      <div class="current-data"></div>
+    </div>
+  </body>
 </html>
