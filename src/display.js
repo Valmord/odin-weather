@@ -40,16 +40,18 @@ export const updateDisplay = (() => {
   };
 
   const weatherInfo = () => {
+    const currentTime = document.createElement("h4");
     const currentTemp = document.createElement("h4");
-    currentTemp.textContent = weatherData.getCurrentTemp();
-
     const weatherIcon = document.createElement("img");
-    weatherIcon.src = weatherData.getWeatherIcon();
-
     const weatherCondition = document.createElement("span");
+
+    currentTime.textContent = weatherData.getCurrentTime();
+    currentTemp.textContent = weatherData.getCurrentTemp();
+    weatherIcon.src = weatherData.getWeatherIcon();
     weatherCondition.textContent = weatherData.getWeatherCondition();
 
     weather.textContent = "";
+    weather.appendChild(currentTime);
     weather.appendChild(currentTemp);
     weather.appendChild(weatherIcon);
     weather.appendChild(weatherCondition);

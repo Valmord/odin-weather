@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 const tempCheckbox = document.querySelector('input[type="checkbox"]');
 
 export const weatherData = {
@@ -46,6 +48,11 @@ export const weatherData = {
     return tempCheckbox.checked
       ? `${this.current.temp_f}°F`
       : `${this.current.temp_c}°C`;
+  },
+
+  getCurrentTime() {
+    const currentTime = new Date(this.location.localtime);
+    return format(currentTime, "h:mm aaaa");
   },
 
   getCurrentHour() {
