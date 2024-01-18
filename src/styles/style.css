@@ -13,12 +13,12 @@
   --celsius-color: orangered;
   --fahrenheit-color: lightgreen;
   --unengaged-color: gray;
+  --floating-color: #0a121caa;
 }
 
 body {
   background-color: black;
   height: 100vh;
-  /* background-repeat: round; */
   background-size: cover;
 }
 
@@ -28,9 +28,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 40vh;
+  height: 50vh;
   font-weight: bold;
-  /* border-bottom: 3px darkgray solid; */
 }
 
 .weather {
@@ -53,10 +52,42 @@ body {
   font-size: 3rem;
 }
 
+.forecasts-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 20px;
+  color: white;
+  font-size: 1.6rem;
+  background-color: var(--floating-color);
+  border-radius: 20px;
+  margin-top: 20px;
+  padding: 20px;
+
+  & .forecast {
+    display: grid;
+    grid-template-columns: 100px 100px;
+    grid-template-rows: 40px 30px;
+    text-align: center;
+  }
+
+  & .forecast > p {
+    grid-column: 1 / -1;
+  }
+
+  & sub {
+    font-size: 1rem;
+  }
+
+  & sub::before {
+    content: " ";
+  }
+}
+
 .btm-container {
   background-color: var(--background-color);
   color: white;
-  height: 60vh;
+  height: 50vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
@@ -81,7 +112,7 @@ body {
     border: none;
     width: 95%;
     padding: 3px 30px 3px 5px;
-    background-color: #0a121caa;
+    background-color: var(--floating-color);
     color: white;
 
     border-radius: 8px;
@@ -99,10 +130,6 @@ body {
     cursor: pointer;
   }
 
-  /* & input::placeholder {
-    color: ;
-  } */
-
   & button {
     padding: 3px 10px;
     font-weight: bold;
@@ -117,7 +144,7 @@ body {
   font-size: 1.6rem;
   font-weight: bold;
   color: var(--unengaged-color);
-  background-color: #0a121caa;
+  background-color: var(--floating-color);
   padding: 15px;
   border-radius: 20px;
 

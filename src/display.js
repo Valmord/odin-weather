@@ -1,8 +1,11 @@
-import { weatherData } from "./page-control";
+import { weatherData } from "./weatherData";
+import { format } from "date-fns";
 
 const body = document.querySelector("body");
 const cityHeader = document.querySelector(".country-city");
 const weather = document.querySelector(".weather");
+const tempCheckbox = document.querySelector('input[type="checkbox"]');
+const forecastContainer = document.querySelector(".forecasts-container");
 
 export const updateDisplay = (() => {
   const city = (newCity) => {
@@ -54,10 +57,63 @@ export const updateDisplay = (() => {
   return { city, weatherInfo, updateTopSection };
 })();
 
+const createMinMaxAvgElements = (forecast) => {
+  const unit = tempCheckbox.checked === true ? "F" : "C";
+  const avgTemp = document.createElement("p");
+  const minTemp = document.createElement("span");
+  const maxTemp = document.createElement("span");
+
+  [avgTemp.textContent, minTemp.textContent, maxTemp.textContent] = [
+    forecast[`avgTemp${unit}`] + `°${unit}`,
+    forecast[`minTemp${unit}`] + `°${unit}`,
+    forecast[`maxTemp${unit}`] + `°${unit}`,
+  ];
+
+  return [avgTemp, minTemp, maxTemp];
+};
+
+const createTempSubscript = () => {
+  const maxText = document.createElement("sub");
+  const avgText = document.createElement("sub");
+  const minText = document.createElement("sub");
+  [minText.textContent, maxText.textContent, avgText.textContent] = [
+    " min",
+    " max",
+    " avg",
+  ];
+  return [avgText, minText, maxText];
+};
+
+const createForecastContainer = (forecast) => {
+  const container = document.createElement("div");
+  const date = document.createElement("p");
+  container.classList.add("forecast");
+  date.textContent = format(forecast.date, "LLL do");
+
+  const [avg, min, max] = createMinMaxAvgElements(forecast);
+  const [avgSubText, minSubText, maxSubText] = createTempSubscript();
+
+  container.appendChild(date);
+  container.appendChild(avg).appendChild(avgSubText);
+  container.appendChild(min).appendChild(minSubText);
+  container.appendChild(max).appendChild(maxSubText);
+  return container;
+};
+
+const displayForecasts = () => {
+  forecastContainer.textContent = "";
+  const forecasts = weatherData.getForecasts();
+  forecasts.forEach((forecast) => {
+    const container = createForecastContainer(forecast);
+    forecastContainer.appendChild(container);
+  });
+};
+
 export const displayNewSearch = () => {
   if (weatherData.hasData()) {
     updateDisplay.city(weatherData.getCityAndCountry());
     updateDisplay.weatherInfo();
     updateDisplay.updateTopSection();
+    displayForecasts();
   }
 };
